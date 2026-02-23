@@ -3,11 +3,23 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { LayoutDashboard, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  LayoutDashboard,
+  Calendar,
+  Trophy,
+  Users,
+  CreditCard,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { useState } from "react";
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/events", label: "Events", icon: Calendar },
+  { href: "/leaderboard", label: "Leaderboard", icon: Trophy },
+  { href: "/teams", label: "Teams", icon: Users },
+  { href: "/billing", label: "Billing", icon: CreditCard },
 ];
 
 interface SidebarContentProps {
@@ -22,12 +34,12 @@ export function SidebarContent({ collapsed }: SidebarContentProps) {
       {/* Logo */}
       <div className="p-4 border-b border-border/60 flex items-center gap-3">
         <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-          <span className="text-primary font-bold text-sm">A</span>
+          <Trophy className="w-4 h-4 text-primary" />
         </div>
         {!collapsed && (
           <div className="overflow-hidden">
-            <h1 className="font-semibold text-sm leading-tight">App Name</h1>
-            <p className="text-[10px] text-muted-foreground">Demo App</p>
+            <h1 className="font-semibold text-sm leading-tight">CompeteHub</h1>
+            <p className="text-[10px] text-muted-foreground">Competition Platform</p>
           </div>
         )}
       </div>

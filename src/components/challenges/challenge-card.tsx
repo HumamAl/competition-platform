@@ -1,37 +1,44 @@
-import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
+import { OutcomeStatement } from "./outcome-statement";
 
-interface ChallengeCardProps {
+interface Challenge {
+  id: string;
   title: string;
   description: string;
-  outcome?: string;
-  children: React.ReactNode;
-  className?: string;
+  outcome: string;
+}
+
+interface ChallengeCardProps {
+  challenge: Challenge;
+  index: number;
+  visualization?: ReactNode;
 }
 
 export function ChallengeCard({
-  title,
-  description,
-  outcome,
-  children,
-  className,
+  challenge,
+  index,
+  visualization,
 }: ChallengeCardProps) {
+  const stepNumber = String(index + 1).padStart(2, "0");
+
   return (
     <div
-      className={cn(
-        "bg-card border border-border/60 shadow-[0_1px_2px_0_rgb(0_0_0/0.03)] rounded-lg p-6 space-y-4 hover:border-primary/30 hover:shadow-[0_2px_8px_0_rgb(0_0_0/0.05)] transition-all duration-150",
-        className
-      )}
+      className="linear-card border-primary/10 bg-gradient-to-br from-accent/5 to-background animate-fade-in p-6 space-y-4"
+      style={{ animationDelay: `${index * 80}ms`, animationDuration: "200ms" }}
     >
       <div>
-        <h2 className="text-lg font-semibold">{title}</h2>
-        <p className="text-sm text-muted-foreground mt-1">{description}</p>
-      </div>
-      {children}
-      {outcome && (
-        <div className="pt-2 border-t border-border/60">
-          <p className="text-sm font-medium text-[color:var(--success)]">{outcome}</p>
+        <div className="flex items-baseline gap-3">
+          <span className="font-mono text-sm font-medium text-primary/70 w-6 shrink-0 tabular-nums">
+            {stepNumber}
+          </span>
+          <h3 className="text-lg font-semibold">{challenge.title}</h3>
         </div>
-      )}
+        <p className="text-sm text-muted-foreground mt-1 pl-[calc(1.5rem+0.75rem)]">
+          {challenge.description}
+        </p>
+      </div>
+      {visualization && <div>{visualization}</div>}
+      <OutcomeStatement outcome={challenge.outcome} index={index} />
     </div>
   );
 }
