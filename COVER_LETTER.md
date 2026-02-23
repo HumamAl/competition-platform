@@ -2,7 +2,7 @@ Hi,
 
 Polishing a platform front-to-back — Stripe billing, PDFs, QR codes, RBAC — is exactly what this phase needs. Built a working demo showing how it all fits together:
 
-**Built this for your project:** {VERCEL_URL}
+**Built this for your project:** https://competition-platform-black.vercel.app
 
 The demo covers the admin/judge/team/public role split, competition leaderboards, and a payment → access activation flow (the webhook sequencing is already wired up). It's mobile-first throughout.
 
